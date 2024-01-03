@@ -53,7 +53,7 @@ Module CRUD
 
     Public Sub DisplayDb(ByVal dgvView As DataGridView)
 
-        Dim query As String = $"SELECT * FROM {GetTableName()}" ' Replace with your table name
+        Dim query As String = $"SELECT * FROM {GetTableName()}" 
 
         Using conn As OleDbConnection = Connection()
 
@@ -62,7 +62,7 @@ Module CRUD
                 Dim table As New DataTable()
                 Dim adapter As New OleDbDataAdapter(command)
                 adapter.Fill(table)
-                dgvView.DataSource = table ' Assuming dgvView is your DataGridView
+                dgvView.DataSource = table
 
             Catch ex As Exception
                 MessageBox.Show("Error occurred: " & ex.Message)
@@ -83,7 +83,7 @@ Module CRUD
             Return columnNames
         End If
 
-        Dim query As String = $"SELECT * FROM {tableName} WHERE 1 = 0" ' Query to get column schema without data
+        Dim query As String = $"SELECT * FROM {tableName} WHERE 1 = 0
 
         Using conn As OleDbConnection = Connection()
             If conn Is Nothing Then
@@ -122,7 +122,7 @@ Module CRUD
             newTextBox.Location = New Point(10, yPos)
             newTextBox.Width = 200
 
-            yPos += 30 ' Increment the Y position for the next TextBox
+            yPos += 30 
 
             parentControl.Controls.Add(newTextBox)
             textBoxes.Add(newTextBox)
@@ -145,7 +145,7 @@ Module CRUD
                     Dim table As New DataTable()
                     Dim adapter As New OleDbDataAdapter(cmd)
                     adapter.Fill(table)
-                    DGV.DataSource = table ' Update DataGridView with the new data
+                    DGV.DataSource = table 
                 End Using
             Catch ex As Exception
                 MessageBox.Show("Error occurred while reloading data: " & ex.Message)
@@ -235,7 +235,7 @@ Module CRUD
             Return
         End If
 
-        ' Replace '0' with the index of the column that contains your unique identifier
+    
         Dim uniqueIdentifierColumnIndex As Integer = 0
         Dim id As String = dgv.SelectedRows(0).Cells(uniqueIdentifierColumnIndex).Value.ToString()
         Dim tableName As String = GetTableName()
@@ -245,7 +245,6 @@ Module CRUD
             Return
         End If
 
-        ' Replace 'Id' with the actual name of your primary key column in the database
         Dim query As String = $"DELETE FROM {tableName} WHERE Id = {GetIdColumnName()}"
 
         Using conn As OleDbConnection = Connection()
